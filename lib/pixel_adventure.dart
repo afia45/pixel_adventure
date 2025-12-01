@@ -23,16 +23,16 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCa
     //Load all image into cache
     await images.loadAllImages(); //load all, but dont load all if theres too much images, takes game longer to load
     final world = Level(
-    player: player,
-    levelName: 'Level-02'
-  );
+      player: player,
+      levelName: 'Level-02'
+    );
 
     cam = CameraComponent.withFixedResolution(
       world: world, 
       width: 640, 
       height: 360
     );
-    priority = 0;
+    priority = -1;
     cam.viewfinder.anchor = Anchor.topLeft;
 
     addAll([cam,world]);
@@ -77,16 +77,16 @@ class PixelAdventure extends FlameGame with HasKeyboardHandlerComponents, DragCa
       case JoystickDirection.left:
       case JoystickDirection.upLeft:
       case JoystickDirection.downLeft:
-        player.playerDirection = PlayerDirection.left;
+        player.horizontalMovement = -1;
         break;
       case JoystickDirection.right:
       case JoystickDirection.upRight:
       case JoystickDirection.downRight:
-        player.playerDirection = PlayerDirection.right;
+        player.horizontalMovement = 1;
         break;
       default:
         //idle
-        player.playerDirection = PlayerDirection.none;
+        player.horizontalMovement = 0;
         break;
     }
   }
