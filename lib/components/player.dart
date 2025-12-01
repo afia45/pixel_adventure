@@ -24,7 +24,7 @@ class Player extends SpriteAnimationGroupComponent with HasGameReference<PixelAd
   //final double _friction = 0.83; //slip effect
 
   final double _gravity = 9.8;
-  final double _jumpForce = 460;
+  final double _jumpForce = 260;
   final double _terminalVelocity = 300;
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -143,7 +143,7 @@ class Player extends SpriteAnimationGroupComponent with HasGameReference<PixelAd
   void _playerJump(double dt) {
     velocity.y = -_jumpForce;
     position.y += velocity.y * dt;
-    isOnGround =
+    isOnGround = false;
     hasJumped = false;
   }
   
@@ -204,6 +204,10 @@ class Player extends SpriteAnimationGroupComponent with HasGameReference<PixelAd
     }
   }
   
-  
+  void jump() {
+  if (isOnGround) {
+    hasJumped = true;
+  }
+}
   
 }
